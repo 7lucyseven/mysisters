@@ -1,10 +1,10 @@
-package com.lucyseven.mysister;
+package com.lucyseven.mysisters;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MysisterApplicationTests {
+class MysistersApplicationTests {
 
 	@Test
 	void contextLoads() {
