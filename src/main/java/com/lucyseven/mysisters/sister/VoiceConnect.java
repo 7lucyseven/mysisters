@@ -22,7 +22,6 @@ public class VoiceConnect {
 
     public ResponseEntity<String> postDataToApi(String apiUrl, Object request) {
 
-        // リクエストボディを作成
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
 
@@ -31,8 +30,10 @@ public class VoiceConnect {
 
 
         // パラメーターを設定
-        String requestBody = "{\"text\": \"" + text + "\", \"speaker\": \"" + speaker + "\"}";
+        String urlWithParams = apiUrl + "?text=" + text + "&speaker=" + speaker;
+        HttpEntity<String> requestEntity = new HttpEntity<>(headers);
 
-        return restTemplate.postForEntity(apiUrl, new HttpEntity<>(requestBody, headers), String.class);
+
+        return restTemplate.postForEntity(urlWithParams, requestEntity, String.class);
     }
 }
