@@ -2,32 +2,32 @@ package com.lucyseven.mysisters.service;
 
 import com.lucyseven.mysisters.dto.VoiceVoxDto;
 import com.lucyseven.mysisters.sister.VoiceConnect;
+import com.lucyseven.mysisters.util.WavePlayer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 public class BootService {
     VoiceConnect voiceConnect;
-    VoiceVoxDto voiceVoxDto;
 
     @Autowired
-    BootService(VoiceConnect voiceConnect, VoiceVoxDto voiceVoxDto){
+    BootService(VoiceConnect voiceConnect){
         this.voiceConnect = voiceConnect;
-        this.voiceVoxDto = voiceVoxDto;
-
     }
 
     public void test() {
 
         //妹ちゃん起動
 
-        //Vice
-        String apiUrl = "http://127.0.0.1:50021/audio_query";
-        //VoiceVoxDto voiceVoxDto = new VoiceVoxDto();
-        voiceVoxDto.setText("こんにちは");
-        voiceVoxDto.setSpeaker(14);
+        //ViceVox
+        String text = "こんにちは";
+        byte[] bytes = voiceConnect.postDataToApi(text);
 
-        voiceConnect.postDataToApi(apiUrl, voiceVoxDto);
+        WavePlayer wavePlayer = new WavePlayer();
+        wavePlayer.run(bytes);
+
+
     }
 
 
