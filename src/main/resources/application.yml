@@ -4,3 +4,9 @@ voicevox:
     audioQuery: /audio_query
     synthesis: /synthesis
   speaker: 14
+openapi:
+  api:
+    url:
+    key:
+    model:
+

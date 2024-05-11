@@ -1,10 +1,8 @@
 package com.lucyseven.mysisters.service;
 
-import com.lucyseven.mysisters.dto.VoiceVoxDto;
 import com.lucyseven.mysisters.sister.VoiceConnect;
 import com.lucyseven.mysisters.util.WavePlayer;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
