@@ -6,7 +6,7 @@ voicevox:
   speaker: 14
 openapi:
   api:
-    url:
-    key:
+    url: https://api.openai.com/v1/chat/completions
+    key: ${OPENAPI_KEY}
     model:
 

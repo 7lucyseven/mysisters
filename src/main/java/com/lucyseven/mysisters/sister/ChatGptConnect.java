@@ -9,11 +9,12 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
-
+@Component
 public class ChatGptConnect {
 
     private final String apiKey;
@@ -28,7 +29,7 @@ public class ChatGptConnect {
         this.apiKey = openApiProperties.getKey();
     }
 
-    public ChatGptResponseDto getChatCptResponse(String prompt) {
+    public ChatGptResponseDto getChatGptResponse(String prompt) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(apiKey);
