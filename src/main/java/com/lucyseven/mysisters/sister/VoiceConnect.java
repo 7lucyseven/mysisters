@@ -20,6 +20,7 @@ public class VoiceConnect {
     private final String apiUrl;
     private final String endpointAudioQuery;
     private final String endpointSynthesis;
+    private final String speaker;
 
 
     @Autowired
@@ -29,13 +30,13 @@ public class VoiceConnect {
         this.apiUrl = voicevoxProperties.getApiUrl();
         this.endpointAudioQuery = voicevoxProperties.getEndpoint().get("audioQuery");
         this.endpointSynthesis = voicevoxProperties.getEndpoint().get("synthesis");
+        this.speaker = voicevoxProperties.getSpeaker();
     }
 
     public byte[] postDataToApi(String text) {
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        String speaker = "14";
 
         // パラメーターを設定
         String urlWithParams = apiUrl + endpointAudioQuery + "?text=" + text + "&speaker=" + speaker;

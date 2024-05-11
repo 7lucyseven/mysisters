@@ -16,6 +16,6 @@ import java.util.Map;
 public class VoicevoxProperties {
     private String apiUrl;
     private Map<String, String> endpoint;
-
+    private String speaker;
 
 }

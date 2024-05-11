@@ -3,3 +3,4 @@ voicevox:
   endpoint:
     audioQuery: /audio_query
     synthesis: /synthesis
+  speaker: 14
