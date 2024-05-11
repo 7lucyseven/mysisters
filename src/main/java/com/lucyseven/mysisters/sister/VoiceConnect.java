@@ -2,6 +2,7 @@ package com.lucyseven.mysisters.sister;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.lucyseven.mysisters.properties.VoicevoxProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.MediaType;
@@ -14,13 +15,20 @@ import java.util.Map;
 
 @Component
 public class VoiceConnect {
-    private final String apiUrl_audio_query = "http://127.0.0.1:50021/audio_query";
-    private final String apiUrl_synthesis = "http://127.0.0.1:50021/synthesis";
     private final RestTemplate restTemplate;
+    private final VoicevoxProperties voicevoxProperties;
+    private final String apiUrl;
+    private final String endpointAudioQuery;
+    private final String endpointSynthesis;
+
 
     @Autowired
-    public VoiceConnect(RestTemplate restTemplate) {
+    public VoiceConnect(RestTemplate restTemplate, VoicevoxProperties voicevoxProperties) {
         this.restTemplate = restTemplate;
+        this.voicevoxProperties = voicevoxProperties;
+        this.apiUrl = voicevoxProperties.getApiUrl();
+        this.endpointAudioQuery = voicevoxProperties.getEndpoint().get("audioQuery");
+        this.endpointSynthesis = voicevoxProperties.getEndpoint().get("synthesis");
     }
 
     public byte[] postDataToApi(String text) {
@@ -30,7 +38,7 @@ public class VoiceConnect {
         String speaker = "14";
 
         // パラメーターを設定
-        String urlWithParams = apiUrl_audio_query + "?text=" + text + "&speaker=" + speaker;
+        String urlWithParams = apiUrl + endpointAudioQuery + "?text=" + text + "&speaker=" + speaker;
         HttpEntity<String> requestEntity = new HttpEntity<>(headers);
         ResponseEntity<String> responseEntity = restTemplate.postForEntity(urlWithParams, requestEntity, String.class);
 
@@ -42,7 +50,7 @@ public class VoiceConnect {
             throw new RuntimeException(e);
         }
 
-        String urlWithParams2 = apiUrl_synthesis + "?speaker=" + speaker;
+        String urlWithParams2 = apiUrl + endpointSynthesis + "?speaker=" + speaker;
         ResponseEntity<byte[]> responseEntity2 = restTemplate.postForEntity(urlWithParams2, map, byte[].class);
 
         return responseEntity2.getBody();

@@ -1,0 +1,5 @@
+voicevox:
+  apiUrl: http://127.0.0.1:50021
+  endpoint:
+    audioQuery: /audio_query
+    synthesis: /synthesis
