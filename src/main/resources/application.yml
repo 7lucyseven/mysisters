@@ -1,0 +1,12 @@
+voicevox:
+  apiUrl: http://127.0.0.1:50021
+  endpoint:
+    audioQuery: /audio_query
+    synthesis: /synthesis
+  speaker: 14
+openapi:
+  api:
+    url: https://api.openai.com/v1/chat/completions
+    key: ${OPENAPI_KEY}
+    model:
+
